@@ -8,6 +8,9 @@ Update: 10/02 - Vercel offers FaaS (Functions as a Service) - Use
 1. Setup Nodemailer for custom signup email with auth code to email
 2. Setup Nodemailer for custom forgot password with authcode to verify email reset 
 3. Test functions locally before deploy
+4. Ensure that this function can only be called from whitelisted domains 
+- The Bookworks client side domain 
+- Local 
 
 
 
