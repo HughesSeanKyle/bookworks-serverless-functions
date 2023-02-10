@@ -37,45 +37,76 @@ async function sendMail() {
 // 	await sendMail();
 // })();
 
-async function sendMailWithCode() {
-	// Send the code to the User Email.
-
-	const data = {
-		smtpInfo: {
-			host: 'smtp.gmail.com',
-			port: 465,
-			user: process.env.TEST_EMAIL_ADDRESS,
-			pass: process.env.TEST_APP_PASSWORD,
-		},
-		company: {
-			name: 'BookWorks.',
-			email: process.env.TEST_EMAIL_ADDRESS,
-		},
-		mailInfo: {
-			emailReceiver: 'khughessean@yahoo.com',
-			subject: 'Code Confirmation',
-			text(code, token) {
-				return `The Confirmation Code is: ${code} or click in this link: www.test.com/?token=${token}`;
+async function sendMailWithCode(recipient) {
+	try {
+		const data = {
+			smtpInfo: {
+				host: 'smtp.gmail.com',
+				port: 465,
+				user: process.env.TEST_EMAIL_ADDRESS,
+				pass: process.env.TEST_APP_PASSWORD,
 			},
-			html(code, token) {
-				return `<p>The Confirmation Code is: ${code} or click in this link: www.test.com/?token=${token}</p>`;
+			company: {
+				name: 'BookWorks',
+				email: process.env.TEST_EMAIL_ADDRESS,
 			},
-		},
-	};
+			mailInfo: {
+				emailReceiver: recipient,
+				subject: 'Code Confirmation',
+				text(code, token) {
+					return `The Confirmation Code is: ${code}`;
+				},
+				html(code, token) {
+					return `<p>The Confirmation Code is: ${code}`;
+				},
+			},
+		};
 
-	await sendCode(data);
+		const sendResult = await sendCode(data);
+
+		console.log('sendResult', sendResult);
+
+		return {
+			data: 'Email sent successfully. Please enter your confirmation code',
+			error: null,
+		};
+	} catch (error) {
+		return {
+			data: null,
+			error: error,
+		};
+	}
 }
 
 // (async () => {
-// 	await sendMailWithCode();
+// 	await sendMailWithCode('khughessean@yahoo.com');
 // })();
 
 async function verifyActionCode(email, code) {
-	const response = await verifyCode(email, code);
+	try {
+		const response = await verifyCode(email, code);
 
-	console.log('response', response);
+		console.log('response', response);
+
+		if (response.error) {
+			return {
+				data: null,
+				error: response.reason,
+			};
+		}
+
+		return {
+			data: 'Code verified successfuly',
+			error: null,
+		};
+	} catch (error) {
+		return {
+			data: null,
+			error: error,
+		};
+	}
 }
 
 (async () => {
-	await verifyActionCode('khughessean@yahoo.com', '292753 ');
+	await verifyActionCode('khughessean@yahoo.com', '359861');
 })();
