@@ -66,6 +66,16 @@ async function sendMailWithCode() {
 	await sendCode(data);
 }
 
+// (async () => {
+// 	await sendMailWithCode();
+// })();
+
+async function verifyActionCode(email, code) {
+	const response = await verifyCode(email, code);
+
+	console.log('response', response);
+}
+
 (async () => {
-	await sendMailWithCode();
+	await verifyActionCode('khughessean@yahoo.com', '292753 ');
 })();
