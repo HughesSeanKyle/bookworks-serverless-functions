@@ -13,5 +13,6 @@
 		"dotenv": "^16.0.3",
 		"email-verification-code": "^2.0.4",
 		"nodemailer": "^6.9.1"
-	}
+	},
+	"type": "module"
 }

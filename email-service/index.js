@@ -1,11 +1,13 @@
-const { sendCode, verifyCode } = require('email-verification-code');
-require('dotenv').config();
+import { sendCode, verifyCode } from 'email-verification-code';
+import dotenv from 'dotenv';
 
-async function sendMailWithCode(recipient) {
+dotenv.config();
+
+async function sendMailWithCode(recipient, message) {
 	try {
 		const data = {
 			smtpInfo: {
-				host: 'smtp.gmail.com',
+				host: process.env.MAIL_HOST,
 				port: 465,
 				user: process.env.TEST_EMAIL_ADDRESS,
 				pass: process.env.TEST_APP_PASSWORD,
@@ -18,10 +20,10 @@ async function sendMailWithCode(recipient) {
 				emailReceiver: recipient,
 				subject: 'Code Confirmation',
 				text(code, token) {
-					return `The Confirmation Code is: ${code}`;
+					return `${message}. The Confirmation Code is: ${code}`;
 				},
 				html(code, token) {
-					return `<p>The Confirmation Code is: ${code}`;
+					return `<p>${message}. The Confirmation Code is: ${code}</p>`;
 				},
 			},
 		};
@@ -43,7 +45,10 @@ async function sendMailWithCode(recipient) {
 }
 
 // (async () => {
-// 	await sendMailWithCode('khughessean@yahoo.com');
+// 	await sendMailWithCode(
+// 		'khughessean@yahoo.com',
+// 		'Congratulations on Signing up with BookWorks! Please enter the provided code to verify your email'
+// 	);
 // })();
 
 async function verifyActionCode(email, code) {
@@ -71,6 +76,6 @@ async function verifyActionCode(email, code) {
 	}
 }
 
-(async () => {
-	await verifyActionCode('khughessean@yahoo.com', '359861');
-})();
+// (async () => {
+// 	await verifyActionCode('khughessean@yahoo.com', '385915');
+// })();

@@ -14,9 +14,24 @@ Update: 10/02 - Vercel offers FaaS (Functions as a Service) - Use
 - Use this function in SignUp flow. When user inputs code and verifyActionCode returns data=true then redirect user to Forgot Password Confirm => Enter code and use Firebase's reset password API to update the password => Make sure this password is encrypted. 
 
 3. Test functions locally before deploy
+- Note "https://bookworks-4fa23.firebaseapp.com" has not been deployed on Firebase just yet. Must still be done when testing functions on client side
+
 4. Ensure that this function can only be called from whitelisted domains 
 - The Bookworks client side domain 
 - Local 
+
+5. May need to set CORS 
+- More info [`here`](https://vercel.com/knowledge/how-to-enable-cors?query=cors#understanding-cors)
+
+
+
+<!-- DELETE THIS 10/02
+    - Refactor code to use import statements 
+    - Test if they work by running through node 
+    - Then deploy
+    - Follow this structure https://blog.logrocket.com/serverless-deployments-vercel-node-js/
+
+ -->
 
 
 
