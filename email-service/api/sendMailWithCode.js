@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default async function sendMailWithCode(recipient, message) {
+export default async function sendMailWithCode(req, res) {
 	try {
 		const { recipient, message } = req.body;
 
