@@ -17,14 +17,14 @@ app.use(morgan('common'));
 app.use(cors());
 
 // Middleware
-app.use(checkWhitelist);
+// app.use(checkWhitelist);
 
 // Routes
 app.use(updatePasswordRouter);
 
 // Test route
 app.get('/test-get', (req, res) => {
-	res.send('Hello from the root route. Update, Two three four ');
+	res.send('Hello from the root route. Update Password ');
 });
 
 app.listen(PORT, () => {
