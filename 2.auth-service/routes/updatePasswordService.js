@@ -7,9 +7,7 @@ router.post(
 	'/user/update-password',
 	[
 		body('newPassword')
-			.matches(
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\x21-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E]?)[A-Za-z\d\x21-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E]{8,}$/
-			)
+			.matches(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/)
 			.withMessage(
 				'Password must contain minimum 8 characters, atleast one lowercase letter, uppercase letter, one number and one special character.'
 			),

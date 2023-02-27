@@ -17,7 +17,7 @@ app.use(morgan('common'));
 app.use(cors());
 
 // Middleware
-// app.use(checkWhitelist);
+app.use(checkWhitelist);
 
 // Routes
 app.use(updatePasswordRouter);
