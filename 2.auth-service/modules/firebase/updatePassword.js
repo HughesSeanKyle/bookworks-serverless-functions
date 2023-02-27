@@ -7,10 +7,33 @@ const app = initializeApp({
 	databaseURL: DATABASE_URL,
 });
 
-console.log('app', app);
+export async function updateUserPassword(email, newPassword) {
+	try {
+		const userRecord = await firebase.auth().getUserByEmail(email);
 
-// Create rate limiter
-const limiter = new RateLimiterMemory({
-	points: 3, // allow 3 requests
-	duration: 24 * 60 * 60, // per 24 hours
-});
+		const updatePasswordResult = await firebase
+			.auth()
+			.updateUser(userRecord.uid, {
+				newPassword,
+			});
+
+		return {
+			data: updatePasswordResult,
+			error: null,
+		};
+	} catch (error) {
+		return {
+			data: null,
+			error: error.message,
+		};
+	}
+}
+
+(async () => {
+	const result = await updateUserPassword(
+		'khughessean@yahoo.com',
+		'@Test12345'
+	);
+
+	console.log('result', result);
+})();
