@@ -1,5 +1,4 @@
 import firebase from 'firebase-admin';
-import { RateLimiterMemory } from 'rate-limiter-flexible';
 import { initializeApp } from 'firebase-admin/app';
 import { serviceAccountKey, DATABASE_URL } from '../../serviceAccountKey.js';
 

@@ -26,7 +26,20 @@ export async function limitUserRequestRate(email) {
 
 		// res.setHeader('Retry-After', retryAfterSeconds);
 		// return res.status(429).json({ message: 'Too Many Requests' });
+
+		return {
+			data: null,
+			error: 'Status 429 - Too Many Requests',
+		};
 	}
+
+	return {
+		data: {
+			result: result,
+			remainingAttempts: remainingAttempts,
+		},
+		error: null,
+	};
 }
 
 (async () => {
@@ -35,4 +48,16 @@ export async function limitUserRequestRate(email) {
 	);
 
 	console.log('rateResult', rateResult);
+
+	const rateResult2 = await limitUserRequestRate(
+		'myUniqueFireBaseEmail@test-firebase.com'
+	);
+
+	console.log('rateResult2', rateResult2);
+
+	const rateResult3 = await limitUserRequestRate(
+		'myUniqueFireBaseEmail@test-firebase.com'
+	);
+
+	console.log('rateResult3', rateResult3);
 })();
