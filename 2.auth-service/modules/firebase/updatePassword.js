@@ -29,11 +29,11 @@ export async function updateUserPassword(email, newPassword) {
 	}
 }
 
-(async () => {
-	const result = await updateUserPassword(
-		'khughessean@yahoo.com',
-		'@Test12345'
-	);
+// (async () => {
+// 	const result = await updateUserPassword(
+// 		'khughessean1@yahoo.com',
+// 		'@Test12345'
+// 	);
 
-	console.log('result', result);
-})();
+// 	console.log('result', result);
+// })();

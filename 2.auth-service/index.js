@@ -3,7 +3,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 
-// import emailServiceRouter from './routes/emailService.js';
+import updatePasswordRouter from './routes/updatePasswordService.js';
 
 import { checkWhitelist } from './middleware/checkWhitelist.js';
 
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(checkWhitelist);
 
 // Routes
-// app.use(emailServiceRouter);
+app.use(updatePasswordRouter);
 
 // Test route
 app.get('/test-get', (req, res) => {
