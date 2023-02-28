@@ -13,6 +13,7 @@ A custom email confirmation code service has been created which is used to confi
 - Localhost - checklist implemented Complete 27/02
 - Bookworks domain - *Implement later*
 6. Deploy to render for testing 
+- Test secret files specifically <==== 27/02
 7. Later, deploy as serverless function 
 
 NOTE: According to render docs, all secret files are available at the root of project. Explanation fr where to locate files when using docker as well. More information [`here`](https://render.com/docs/configure-environment-variables#secret-and-environment-configuration-files)
